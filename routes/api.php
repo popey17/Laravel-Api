@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,14 +21,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/user', function () {
-    $data = [
-        'name' => 'John Doe',
-        'email' => 'john@example.com',
-        'role' => 'user',
-    ];
-    return   response()->json($data);
-})->middleware('auth:sanctum');
+Route::get('/products', [ProductController::class,'getAll'])->middleware('auth:sanctum');
+Route::get('/categories/{id}', [CategoryController::class,'getProductsByCate'])->middleware('auth:sanctum');
+Route::get('/categories', [CategoryController::class,'getAll'])->middleware('auth:sanctum');
 
 Route::post('/auth/register', [UserController::class, 'createUser']);
 Route::post('/auth/login', [UserController::class, 'loginUser']);
