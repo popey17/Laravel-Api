@@ -7,6 +7,59 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
-.main{
-    
+//media variable;
+@import 'media';
+
+
+
+
+// .main-container {
+//   margin: 0;
+//   position: relative;
+// }
+
+// .left-panel {
+//   padding: 0;
+//   position: fixed;
+// }
+
+// .navbar-container  {
+//   padding: 0;
+//   position: relative;
+//   right: 0;
+// }
+
+.navbar {
+  // width: 100vw;
+  background: #febc58;
+  color: #fff;
+  // height: 50px;
+  // position: fixed;
 }
+
+// leftpanel css
+.main-container{
+  padding-top: 50px;
+  margin: 0;
+  .left-nav-container {
+    height: 100vh;
+    background: #febc58;
+    padding: 0;
+    position: fixed;
+    ul {
+      li {
+        text-decoration: none;
+        list-style: none;
+      }
+    }
+  }
+  .main-content {
+    height: 2000px;
+    padding-top: 20px;
+    margin-left: calc(16.666667% );
+  }
+}
+
+
+//main contents
+
