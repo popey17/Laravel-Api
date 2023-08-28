@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function index()
+    {
+        return view('components.categories');
+    }
+
     public function getAll()
     {
        return Categories::with('product')->get();

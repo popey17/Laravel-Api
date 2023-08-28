@@ -32,34 +32,195 @@
 .navbar {
   // width: 100vw;
   background: #febc58;
-  color: #fff;
+  box-shadow: 0px 0rem 1rem rgb(3 7 93 / 92%) !important;
+  padding: 0;
   // height: 50px;
   // position: fixed;
+  .container-fluid{
+    padding: 0 60px;
+    .navbar-brand{
+      font-size: 30px;
+      font-weight: 700;
+      color: #01055d;
+    }
+    a {
+      color: #01055d;
+    }
+  }
 }
 
 // leftpanel css
 .main-container{
-  padding-top: 50px;
+  padding-top: 55px;
   margin: 0;
   .left-nav-container {
     height: 100vh;
-    background: #febc58;
+    background: #01055d;
+    // border-radius: 20px;
     padding: 0;
     position: fixed;
     ul {
-      li {
-        text-decoration: none;
+      padding: 20px 0 0 20px;
+      width: 100%;;
+      .side-nav-items {
         list-style: none;
+        &.active{
+          background: #f8fafc;
+          border-top-left-radius:18px;
+          border-bottom-left-radius:18px;
+          position: relative;
+          b {
+            position: relative;
+            &:nth-child(1) {
+              position: absolute;
+              display: block;
+              bottom: 100%;
+              width: 100%;
+              height: 20px;
+              background: white;              
+            }          
+            &:nth-child(1):after {
+              content: "";
+              position: absolute;
+              background: #01055d;
+              width: 100%;
+              height: 20px;
+              right: 0;
+              border-bottom-right-radius: 20px;
+              // border-top-right-radius: 20px;
+              // z-index: 10;
+            }
+            &:nth-child(2) {
+              position: absolute;
+              display: block;
+              top: 100%;
+              width: 100%;
+              height: 20px;
+              background: white;              
+            }          
+            &:nth-child(2):after {
+              content: "";
+              position: absolute;
+              background: #01055d;
+              width: 100%;
+              height: 20px;
+              right: 0;
+              border-top-right-radius: 20px;
+              // border-top-right-radius: 20px;
+              // z-index: 10;
+            }
+          }
+          a {
+          color: #01055d;
+          }
+        }
+      }
+      a {
+        width: 100%;
+        text-decoration: none;
+        font-size: 20px;
+        display: block;
+        color: #fff;
+        padding: 15px 15%;
+        .icon{
+          padding-right: 10px;
+        }
+        .title {
+          display: inline-block;
+          @include screen-950-max {
+            display: none;
+          }
+        }
       }
     }
   }
   .main-content {
-    height: 2000px;
     padding-top: 20px;
     margin-left: calc(16.666667% );
+    @include screen-between-768-1400 {
+      margin-left: calc(24.9999%);
+    }
   }
 }
 
 
-//main contents
+//main contents title area
+.main-content {
+  padding: 20px;
+  .header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    a {
+      text-decoration: none;
+      span{
+        &:first-child{
+          padding-right: 5px;
+        }
+      }
+     .title {
+      font-size: 18px;
+      color: #01055d; 
+     }
+     .icon {
+      font-size: 18px;
+      color: #01055d;
+      line-height: 28px;
+     }
+    }
+  }
+}
 
+//Add Product Form
+.addProductForm {
+  padding-top: 80px;
+  width: 30%;
+  margin: auto;
+  @include screen-between-768-1400 {
+    width: 50%;
+  }
+  @include screen-950-max {
+    width: 80%;
+  }
+  @include screen-768-max {
+    width: 90%;
+  }
+  @include screen-575-max {
+    padding-top: 30px;
+    // margin: 0;
+  }
+  form{
+    width: 100%;
+    .formItems{
+      padding-bottom: 30px;
+      @include screen-575-max {
+        padding-bottom: 15px;
+      }
+      label{
+        padding: 0;
+      }
+      input{
+        padding: 0;
+      }
+      textarea, select {
+        padding: 0;
+      }
+    }
+    .addProductBtn{
+      background: #01055d;
+      border: none;
+      &:hover{
+        background:#fff;
+        border: solid 1px #01055d;
+        color: #000;
+      }
+    }
+    input[type="submit"]{
+      margin: -0.75rem;
+    }
+  }
+}
+
+
+//products 

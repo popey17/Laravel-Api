@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,4 +24,13 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/products', [ProductController::class,'index'])->name('products');;
+Route::get('/admin', [AdminController::class,'index'])->name('admin');
+
+Route::get('/products/add', [ProductController::class,'add'])->name('addProduct');
+Route::post('/products/add', [ProductController::class,'create']);
+
+Route::get('/products', [ProductController::class,'index'])->name('products');
+Route::get('/products/{id}', [ProductController::class,'detail'])->name('productDeatil');
+
+
+Route::get('/categories', [CategoryController::class,'index'])->name('categories');

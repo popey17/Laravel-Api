@@ -4,8 +4,38 @@
     @content;
   }
 }
-@mixin screen-1200 {
+@mixin screen-1200-min {
   @media screen and (min-width: 1200px) {
+    @content;
+  }
+}
+@mixin screen-950-max {
+  @media screen and (max-width: 950px) {
+    @content;
+  }
+}
+@mixin screen-950-min {
+  @media screen and (min-width: 950px) {
+    @content;
+  }
+}
+@mixin screen-between-768-1400 {
+  @media (min-width: 768px) and (max-width: 1400px) {
+    @content;
+  }
+}
+@mixin screen-between-768-1400 {
+  @media (min-width: 768px) and (max-width: 1400px) {
+    @content;
+  }
+}
+@mixin screen-768-max {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+@mixin screen-575-max {
+  @media (max-width: 575px) {
     @content;
   }
 }
