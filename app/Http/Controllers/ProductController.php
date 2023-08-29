@@ -61,7 +61,7 @@ class ProductController extends Controller
         $product->description = $request->input('description');
         $product->price = $request->input('price');
         $product->category_id = $request->input('category');
-        $product->image = asset('uploads/'.$imageName);
+        $product->image = 'uploads/'.$imageName;
         $product->save();
 
         return redirect('/products');
