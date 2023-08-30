@@ -17,7 +17,28 @@ navLink.forEach(link => {
 });
 
 $(document).ready(function() {
-    $('.view-details').click(function() {
+
+    fetch_customer_data();
+
+    function fetch_customer_data(query = '') {
+        $.ajax({
+            url:"/action",
+            method:'GET',
+            data:{query:query},
+            dataType:'json',
+            success:function(data)
+            {
+                $('tbody').html(data.table_data);
+            }
+        })
+    }
+
+    $(document).on('keyup', '#search', function(){
+        var query = $(this).val();
+        fetch_customer_data(query);
+    });
+
+    $("tbody").on('click','.view-details',function(){
         var productId = $(this).data('id');
         $.get('/products/' + productId, function(data) {
             $('#detailPopup').attr('style', '');
@@ -29,4 +50,17 @@ $(document).ready(function() {
     $('#detailPopup').on('click', function() {
         $(this).hide();
     });
+
+    $("tbody").on('click','.edit',function(){
+        var productId = $(this).data('id');
+        $.get('/products/edit/' + productId, function(data) {
+            $('#editPopup').attr('style', '');
+            $('#editPopup').html(data);
+            $('#editForm').show();
+        });
+    });
+    
+    
+
 });
+
