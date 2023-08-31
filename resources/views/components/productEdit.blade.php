@@ -34,7 +34,10 @@
             <label class="col-12 col-sm-3" for="image">Add Image</label>
             <input class="col-12 col-sm-9" type="file" value="{{$product->image}}" name="image">
         </div>
-        <input type="submit" value="Edit Product"
-        class="btn btn-primary addProductBtn">
+        <div>
+            <input type="submit" value="Edit Product"
+            class="btn btn-primary addProductBtn">
+        </div>
     </form>
+    <button class="btn btn-primary addProductBtn cancelBtn">Cancel</button>
 </div>

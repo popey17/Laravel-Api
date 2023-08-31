@@ -59,7 +59,24 @@ $(document).ready(function() {
             $('#editForm').show();
         });
     });
-    
+    $('#editPopup').on('click', function(e) {
+        if(e.target === this)
+        $(this).hide();
+    });
+
+    $('#editPopup').on('click','.cancelBtn', function(e) {
+        console.log('hello');
+        $('#editPopup').hide();
+    });
+
+    $(document).on('click','.del',function(e){
+        e.preventDefault()
+        var  id = $(this).data('id')
+        $('#delete_id').val(id)
+        $('#delModel').modal('show')
+
+    })
+
     
 
 });

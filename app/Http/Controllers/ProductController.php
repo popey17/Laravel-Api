@@ -64,7 +64,7 @@ class ProductController extends Controller
                         <td>'.$row->price.'</td>
                         <td>
                             <button class="action view-details" data-id='.$row->id.'><i class="fa-solid fa-circle-info"></i></button>
-                            <a class="action del" href="/products/delete/'.$row->id.'"><i class="fa-solid fa-trash"></i></a>
+                            <button class="del"  data-toggle="modal" data-target="#exampleModal" data-id='.$row->id.'><i class="fa-solid fa-trash"></i></a>
                             <button class="action edit" data-id='.$row->id.'><i class="fa-solid fa-pen-to-square"></i></button>
                         </td>
                     </tr>
@@ -135,7 +135,7 @@ class ProductController extends Controller
     {
         $productDetail = Products::find($id);
 
-        return view('components.ProductDetail',['deatilItem'=> $productDetail]);
+        return view('components.productDetail',['deatilItem'=> $productDetail]);
     }
 
     public function edit($id) 
@@ -143,15 +143,15 @@ class ProductController extends Controller
         $product = Products::find($id);
         $data = Categories::all();
 
-        return view('components.ProductEdit',['product'=> $product,'categories'=>$data]);
+        return view('components.productEdit',['product'=> $product,'categories'=>$data]);
     }
 
-    public function del($id)
+    public function del(Request $request)
     {
-        $data = Products::find($id);
+        $data = Products::find($request->input('delete_id'));
         $data->delete();
 
-        return back();
+        return redirect('/products');
     }
 
     public function update($id)
