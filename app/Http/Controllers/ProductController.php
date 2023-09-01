@@ -21,12 +21,18 @@ class ProductController extends Controller
         // ->select('products.*', 'categories.name as category_name')
         // ->get();
         // dd($joinQuery);
+        // $data = DB::table('products')
+        //         ->join('categories', 'products.category_id', '=', 'categories.id')
+        //         ->select('products.*', 'categories.name as category_name')
+        //             ->orderBy('id', 'desc')
+        //             ->get();
+        // dd($data);
         return view('components.products');
     }
 
     public function action(Request $request)
     {
-        
+
         if($request->ajax())
         {
             $output = '';
@@ -38,6 +44,7 @@ class ProductController extends Controller
                     ->where(function ($q) use ($query) {
                         $q->where('products.id', 'like', '%' . $query . '%')
                             ->orWhere('products.item_code', 'like', '%' . $query . '%')
+                            ->orWhere('categories.name', 'like', '%' . $query . '%')
                             ->orWhere('products.name', 'like', '%' . $query . '%');
                     })
                     ->orderBy('products.id', 'desc')

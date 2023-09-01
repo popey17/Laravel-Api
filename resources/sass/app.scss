@@ -153,8 +153,10 @@
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    a {
+    a,button {
       text-decoration: none;
+      background: transparent;
+      border: none;
       span{
         &:first-child{
           padding-right: 5px;

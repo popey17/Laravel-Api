@@ -77,7 +77,20 @@ $(document).ready(function() {
 
     })
 
-    
+    $(document).on('click','.close',function(e){
+        e.preventDefault();
+        $('#delModel').modal('hide')
+    })
+
+    $(document).on('click','.categoryDel',function(e){
+        console.log('hello');
+        e.preventDefault()
+        var  id = $(this).data('id')
+        $('#categoryId').val(id)
+        $('#deleteCategoryModel').modal('show')
+
+    })
+
 
 });
 

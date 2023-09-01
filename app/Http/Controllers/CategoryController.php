@@ -15,7 +15,9 @@ class CategoryController extends Controller
 
     public function index()
     {
-        return view('components.categories');
+        $data = Categories::get();
+        // dd($data);
+        return view('components.category.categories',['categories'=>$data]);
     }
 
     public function getAll()
@@ -33,5 +35,31 @@ class CategoryController extends Controller
     }
 
     return response()->json($category);
+    }
+
+    public function create()
+    {
+        $validator = validator(request()->all(),[
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+        if($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+
+        $data = new Categories();
+        $data->name= request()->name;
+        $data->description= request()->description;
+        $data->save();
+
+        return redirect('/categories');
+    }
+
+    public function del ()
+    {
+        $data = Categories::find(request()->categoryId);
+        $data->delete();
+
+        return redirect('/categories');
     }
 }
