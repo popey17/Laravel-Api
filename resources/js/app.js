@@ -83,13 +83,29 @@ $(document).ready(function() {
     })
 
     $(document).on('click','.categoryDel',function(e){
-        console.log('hello');
         e.preventDefault()
         var  id = $(this).data('id')
         $('#categoryId').val(id)
         $('#deleteCategoryModel').modal('show')
 
     })
+
+
+    $(document).on('click','.categoryEdit',function(){
+        var productId = $(this).data('id');
+        $.ajax({
+            url: '/category/edit/' + productId,
+            type: "GET",
+            dataType: 'json',
+            success:  function(data) {
+                $('#editCategoryId').val(data.id);
+                $('#categoryName').val(data.name);
+                $('#categoryDescription').val(data.description);
+            },
+        });
+    });
+
+
 
 
 });

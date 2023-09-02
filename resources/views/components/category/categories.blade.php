@@ -23,6 +23,7 @@
           <p class="card-text">{{$category->description}}</p>
           <p class="card-text">Total Item: {{ $category->product->count()}}</p>
           <button type="button" class="btn btn-primary btn-danger float-end categoryDel"data-bs-toggle="modal" data-bs-target="#deleteCategoryModal"  data-id="{{$category->id}}">Delete</button>
+          <button type="button" class="btn btn-primary btn-secondary float-end me-2 categoryEdit"data-bs-toggle="modal" data-bs-target="#editCategoryModal"  data-id="{{$category->id}}">Edit</button>
         </div>
       </div>
       @endforeach
@@ -48,6 +49,32 @@
           <div class="mb-3">
             <label for="description" class="form-label">description</label>
             <textarea type="password" class="form-control"  name="description" id="description"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Category</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{{url('/category/edit')}}" method="POST">
+          @csrf
+          <input type="hidden" name="editCategoryId" id="editCategoryId">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" name="name" id="categoryName">
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">description</label>
+            <textarea type="password" class="form-control"  name="description" id="categoryDescription"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>

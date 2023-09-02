@@ -62,4 +62,31 @@ class CategoryController extends Controller
 
         return redirect('/categories');
     }
+
+    public function edit ($id)
+    {
+        $data = Categories::find($id);
+        $categories = Categories::get();
+        // dd(['categories'=>$categories,'data'=>$data]);
+        // return view('components.category.categories',['categories'=>$categories,'data'=>$data]);
+        return response()->json($data);
+    }
+
+    public function update ()
+    {
+        $validator = validator(request()->all(),[
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+        if($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+
+        $data = Categories::find(request()->editCategoryId);
+        $data->name= request()->name;
+        $data->description= request()->description;
+        $data->save();
+
+        return redirect('/categories');
+    }
 }

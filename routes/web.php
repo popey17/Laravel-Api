@@ -46,3 +46,5 @@ Route::get('/products/{id}', [ProductController::class,'detail'])->name('product
 Route::get('/categories', [CategoryController::class,'index'])->name('categories');
 Route::post('/categories/add', [CategoryController::class,'create'])->name('createCategory');
 Route::post('/categories/del', [CategoryController::class,'del']);
+Route::get('/category/edit/{id}', [CategoryController::class,'edit']);
+Route::post('/category/edit', [CategoryController::class,'update']);
