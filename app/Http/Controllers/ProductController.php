@@ -198,4 +198,10 @@ class ProductController extends Controller
 
     }
     
+    public function getProductsByName($name)
+    {
+        $product= Products::where('name' , 'like' , '%'. $name .'%')->get();
+
+        return $product;
+    }
 }
