@@ -25,7 +25,7 @@ class CategoryController extends Controller
        return Categories::with('product')->get();
     }
 
-    public function getProductsByCate($id)
+    public function getCate($id)
     {
         // return Categories::with('product')->find($id);
         $category = Categories::with('product')->find($id);
@@ -88,5 +88,12 @@ class CategoryController extends Controller
         $data->save();
 
         return redirect('/categories');
+    }
+
+    public function getCateByName($name)
+    {
+        $Category= Categories::where('name' , 'like' , '%'. $name .'%')->get();
+
+        return $Category;
     }
 }

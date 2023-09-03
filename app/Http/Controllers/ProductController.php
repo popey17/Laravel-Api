@@ -204,4 +204,15 @@ class ProductController extends Controller
 
         return $product;
     }
+
+    public function getProductsByCate($category)
+    {
+        $categoryItem = Products::with('category')
+        ->whereHas('category', function ($query) use ($category) {
+            $query->where('name', 'like', '%' . $category . '%');
+        })
+        ->get();
+        
+        return $categoryItem;
+    }
 }
