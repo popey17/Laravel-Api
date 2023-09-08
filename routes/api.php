@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/products', [ProductController::class,'getAll'])->middleware('auth:sanctum');
+
 Route::get('/categories/{id}', [CategoryController::class,'getCate'])->middleware('auth:sanctum');
 
 Route::get('/products/category/{name}', [ProductController::class,'getProductsByCate'])->middleware('auth:sanctum');
