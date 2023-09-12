@@ -69,8 +69,10 @@ class ProductController extends Controller
                         <td>'.$row->category_name.'</td>
                         <td>'.$row->description.'</td>
                         <td>'.$row->price.'</td>
+                        <td>'.$row->moq_amount.'</td>
+                        <td>'.$row->moq_price.'</td>
                         <td>
-                            <button class="action view-details" data-id='.$row->id.'><i class="fa-solid fa-circle-info"></i></button>
+                            <button class="action view-details" data-bs-toggle="modal" data-bs-target="#detailModal" data-id='.$row->id.'><i class="fa-solid fa-circle-info"></i></button>
                             <button class="del"  data-toggle="modal" data-target="#exampleModal" data-id='.$row->id.'><i class="fa-solid fa-trash"></i></a>
                             <button class="action edit" data-id='.$row->id.'><i class="fa-solid fa-pen-to-square"></i></button>
                         </td>

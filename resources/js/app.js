@@ -38,18 +38,15 @@ $(document).ready(function() {
         fetch_customer_data(query);
     });
 
-    $("tbody").on('click','.view-details',function(){
+    $(document).on('click','.view-details',function(){
         var productId = $(this).data('id');
         $.get('/products/' + productId, function(data) {
-            $('#detailPopup').attr('style', '');
-            $('#detailPopup').html(data);
-            $('#detail').show();
+            console.log(data);
+            $('#detailModal').html(data);
+            $('#detailModel').modal('show');
         });
     });
     
-    $('#detailPopup').on('click', function() {
-        $(this).hide();
-    });
 
     $("tbody").on('click','.edit',function(){
         var productId = $(this).data('id');

@@ -148,6 +148,12 @@
 //main contents title area
 .main-content {
   padding: 60px;
+  @include screen-768-max {
+    padding: 30px;
+  }
+  @include screen-575-max {
+    padding: 15px;
+  }
   .header {
     display: flex;
     width: 100%;
@@ -165,7 +171,10 @@
      .title {
       font-size: 18px;
       color: #01055d; 
-     }
+      @include screen-575-max {
+        display: none;
+      }
+     } 
      .icon {
       font-size: 18px;
       color: #01055d;
@@ -238,9 +247,14 @@
 }
 
 .products-wrapper {
-  // overflow: scroll;
+  overflow: scroll;
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
   // border-collapse: collapse;
   // background: #f8fafc;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   table {
     width: 100%;
     tr {
@@ -287,27 +301,33 @@
     }
   }
 }
-#detailPopup {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  background: #b0acacb9;
-  left: 0;
-  top: 0;
-  z-index: 9999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .detail {
-    background: white;
-    width: 30vw;
-    height: 70vh;
-    img {
-      width: 300px;
-      height: 300px;
-      object-fit: contain;
-    }
-  }
+// #detailPopup {
+//   position: absolute;
+//   width: 100vw;
+//   height: 100vh;
+//   background: #b0acacb9;
+//   left: 0;
+//   top: 0;
+//   z-index: 9999;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   .detail {
+//     background: white;
+//     width: 30vw;
+//     height: 70vh;
+//     img {
+//       width: 300px;
+//       height: 300px;
+//       object-fit: contain;
+//     }
+//   }
+// }
+.card {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #editPopup {
