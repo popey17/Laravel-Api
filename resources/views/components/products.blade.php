@@ -3,7 +3,7 @@
 @section('mainContent')
 <div class="mainContent">
     <div class="header">
-        <h1>products</h1>
+        <h1 class="me-">products</h1>
         <div class="right">
             <div class="form-group">
                 <input type="text" name="search" id="search" class="form-control" placeholder="Search Item" />
@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <div class="products-wrapper">
+    <div class="products-wrapper text-center">
         <table>
             <colgroup>
                 <col span="1" style="width: 10%;">
@@ -34,6 +34,8 @@
                     <th>Category</th>
                     <th>Description</th>
                     <th>Price</th>
+                    <th>MOQ</th>
+                    <th>MOQ Price</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -42,9 +44,15 @@
             </tbody>
         </table>
     </div>
-    <div id="detailPopup" class="popup" style="display:none;">
 
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+      
     </div>
+  </div>
+  </div>
+</div>
     <div id="editPopup" class="popup" style="display:none;">
 
     </div>

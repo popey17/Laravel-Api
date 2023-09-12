@@ -24,13 +24,13 @@
     @content;
   }
 }
-@mixin screen-between-768-1400 {
-  @media (min-width: 768px) and (max-width: 1400px) {
+@mixin screen-768-max {
+  @media (max-width: 768px) {
     @content;
   }
 }
-@mixin screen-768-max {
-  @media (max-width: 768px) {
+@mixin screen-768-min {
+  @media (min-width: 768px) {
     @content;
   }
 }
