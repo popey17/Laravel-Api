@@ -16,23 +16,15 @@ class ProductController extends Controller
 
     public function index()
     {
-        // $joinQuery = DB::table('products')
-        // ->join('categories', 'products.category_id', '=', 'categories.id')
-        // ->select('products.*', 'categories.name as category_name')
-        // ->get();
-        // dd($joinQuery);
-        // $data = DB::table('products')
-        //         ->join('categories', 'products.category_id', '=', 'categories.id')
-        //         ->select('products.*', 'categories.name as category_name')
-        //             ->orderBy('id', 'desc')
-        //             ->get();
-        // dd($data);
-        return view('components.products');
+        $categories = Categories::all();
+
+        return view('components.products',['categories'=> $categories]);
     }
 
     public function action(Request $request)
     {
 
+        // $categories = Categories::all();
         if($request->ajax())
         {
             $output = '';
@@ -64,7 +56,7 @@ class ProductController extends Controller
                     $output .= '
                     <tr>
                         <td><img src='.$row->image.'></td>
-                        <td>'.$row->item_code.'</td>
+                        <td>'.$row->item_code.'</td>`
                         <td>'.$row->name.'</td>
                         <td>'.$row->category_name.'</td>
                         <td>'.$row->description.'</td>
@@ -74,7 +66,7 @@ class ProductController extends Controller
                         <td>
                             <button class="action view-details" data-bs-toggle="modal" data-bs-target="#detailModal" data-id='.$row->id.'><i class="fa-solid fa-circle-info"></i></button>
                             <button class="del"  data-toggle="modal" data-target="#exampleModal" data-id='.$row->id.'><i class="fa-solid fa-trash"></i></a>
-                            <button class="action edit" data-id='.$row->id.'><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="action edit" data-bs-toggle="modal" data-bs-target="#editProductModal" data-id='.$row->id.'><i class="fa-solid fa-pen-to-square"></i></button>
                         </td>
                     </tr>
                     ';
@@ -91,6 +83,8 @@ class ProductController extends Controller
             );
             echo json_encode($data);
         }
+        // return view('components.products',['categories'=> $categories]);
+
     }
 
     public function getAll()
@@ -133,6 +127,8 @@ class ProductController extends Controller
         $product->name = $request->input('name');
         $product->description = $request->input('description');
         $product->price = $request->input('price');
+        $product->moq_amount = request()->moqAmount;
+        $product->moq_price = request()->moqPrice;
         $product->category_id = $request->input('category');
         $product->image = empty($imageName) ? 'uploads/no-image.jpg' : 'uploads/' . $imageName;
         $product->save();
@@ -192,6 +188,8 @@ class ProductController extends Controller
         $product->name = request()->name;
         $product->description = request()->description;
         $product->price = request()->price;
+        $product->moq_amount = request()->moqAmount;
+        $product->moq_price = request()->moqPrice;
         $product->category_id = request()->category;
         $product->image = empty($imageName) ? $product->image : 'uploads/' . $imageName;
         $product->save();

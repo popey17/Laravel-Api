@@ -186,21 +186,17 @@
 
 //Add Product Form
 .addProductForm {
-  padding-top: 80px;
-  width: 30%;
+  // padding-top: 80px;
+  max-width: 70%;
   margin: auto;
   @include screen-between-768-1400 {
-    width: 50%;
+    max-width: 70%;
   }
   @include screen-950-max {
-    width: 80%;
+    max-width: 70%;
   }
   @include screen-768-max {
-    width: 90%;
-  }
-  @include screen-575-max {
-    padding-top: 30px;
-    // margin: 0;
+    max-width: 90%;
   }
   form{
     width: 100%;
@@ -220,7 +216,7 @@
       }
     }
     .addProductBtn{
-      background: #01055d;
+      // background: #01055d;
       border: none;
       &:hover{
         background:#fff;
@@ -228,9 +224,9 @@
         color: #000;
       }
     }
-    input[type="submit"]{
-      margin: -0.75rem;
-    }
+    // input[type="submit"]{
+    //   margin: -0.75rem;
+    // }
   }
 }
 
@@ -323,27 +319,39 @@
 //     }
 //   }
 // }
-.card {
+.detailcard {
   position: relative;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 5px;
+  padding: 5px;
 }
 
-#editPopup {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  background: #b0acacb9;
-  left: 0;
-  top: 0;
-  z-index: 9999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .addProductForm{
-    background: white;
-    width: 30vw;
-    height: 70vh;
-  }
+// #editPopup {
+//   position: absolute;
+//   width: 100vw;
+//   height: 100vh;
+//   background: #b0acacb9;
+//   left: 0;
+//   top: 0;
+//   z-index: 9999;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   .addProductForm{
+//     background: white;
+//     width: 30vw;
+//     height: 70vh;
+//   }
+// }
+
+.editForm {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  max-width: 50rem;
 }

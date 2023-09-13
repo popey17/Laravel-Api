@@ -51,20 +51,21 @@ $(document).ready(function() {
     $("tbody").on('click','.edit',function(){
         var productId = $(this).data('id');
         $.get('/products/edit/' + productId, function(data) {
-            $('#editPopup').attr('style', '');
-            $('#editPopup').html(data);
-            $('#editForm').show();
+            console.log(data);
+            $('#editProductModal').html(data);
+            // $('#editProductModal').modal('show');
         });
     });
-    $('#editPopup').on('click', function(e) {
-        if(e.target === this)
-        $(this).hide();
-    });
+    
+    // $('#editPopup').on('click', function(e) {
+    //     if(e.target === this)
+    //     $(this).hide();
+    // });
 
-    $('#editPopup').on('click','.cancelBtn', function(e) {
-        console.log('hello');
-        $('#editPopup').hide();
-    });
+    // $('#editPopup').on('click','.cancelBtn', function(e) {
+    //     console.log('hello');
+    //     $('#editPopup').hide();
+    // });
 
     $(document).on('click','.del',function(e){
         e.preventDefault()

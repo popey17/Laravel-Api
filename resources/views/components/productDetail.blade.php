@@ -1,5 +1,5 @@
 
-      <div class="card" style="width: 18rem;">
+      <div class="detailcard" style="width: 18rem;">
         <div class="p-2">
             <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
