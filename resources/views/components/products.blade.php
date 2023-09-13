@@ -53,9 +53,13 @@
   </div>
   </div>
 </div>
-    <div id="editPopup" class="popup" style="display:none;">
-
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      
     </div>
+  </div>
+</div>
     <div class="modal fade" id="delModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
