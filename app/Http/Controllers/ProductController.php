@@ -106,16 +106,31 @@ class ProductController extends Controller
             'category' => 'required',
             'image' => 'image|mimes:jpeg,png,jpg,webp',
         ]);
+        
+        function removeSpecialCharacters($inputString) {
+            // Use a regular expression to remove all special characters
+            $cleanedString = preg_replace('/[^a-zA-Z0-9\s]/', '', $inputString);
+    
+            // Remove extra whitespace
+            $cleanedString = preg_replace('/\s+/', '', $cleanedString);
 
-        $itemName = $request->input('name'); // Replace with the actual field name for item name
+            // Trim any leading or trailing whitespace
+            $cleanedString = trim($cleanedString);
+    
+            return $cleanedString;
+        }   
+
+        $itemName = $request->input('name');
+        $cleanItemName = removeSpecialCharacters($itemName);
         $itemCode = $request->input('itemCode');
+        $claenItemCode = removeSpecialCharacters($itemCode);
  
 
 
 
         if($request->hasFile('image')){
             $image = $request->file('image');
-            $imageName = $itemName.$itemCode.'.'.$image->getClientOriginalExtension();
+            $imageName = $cleanItemName.'-'.$claenItemCode.'.'.$image->getClientOriginalExtension();
             $image->move('uploads',$imageName);
         }
 
@@ -170,16 +185,33 @@ class ProductController extends Controller
         if($validator->fails()) {
             return back()->withErrors($validator);
         }
+        
+        
+        function removeSpecialCharacters($inputString) {
+            // Use a regular expression to remove all special characters
+            $cleanedString = preg_replace('/[^a-zA-Z0-9\s]/', '', $inputString);
+    
+            // Remove extra whitespace
+            $cleanedString = preg_replace('/\s+/', '', $cleanedString);
+
+            // Trim any leading or trailing whitespace
+            $cleanedString = trim($cleanedString);
+    
+            return $cleanedString;
+        }
 
         $itemName = request()->input('name'); // Replace with the actual field name for item name
+        $cleanItemName = removeSpecialCharacters($itemName);
         $itemCode = request()->input('itemCode');
+        $claenItemCode = removeSpecialCharacters($itemCode);
+       
  
 
 
 
         if(request()->hasFile('image')){
             $image = request()->file('image');
-            $imageName = $itemName.'-'.$itemCode.'.'.$image->getClientOriginalExtension();
+            $imageName = $cleanItemName.'-'.$claenItemCode.'.'.$image->getClientOriginalExtension();
             $image->move('uploads',$imageName);
         }
 
