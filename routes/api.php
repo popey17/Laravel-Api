@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\CategoryApiController;
+use App\Http\Controllers\Api\ProductApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,14 +21,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/products', [ProductController::class,'getAll'])->middleware('auth:sanctum');
+Route::get('/products', [ProductApiController::class,'getAll']);
 
-Route::get('/categories/{id}', [CategoryController::class,'getCate'])->middleware('auth:sanctum');
+Route::get('/categories', [CategoryApiController::class,'getAll']);
+Route::get('/categories/{id}', [CategoryApiController::class,'getCate']);
 
-Route::get('/products/category/{name}', [ProductController::class,'getProductsByCate'])->middleware('auth:sanctum');
-Route::get('/products/{name}', [ProductController::class,'getProductsByName'])->middleware('auth:sanctum');
+Route::get('/products/category/{name}', [ProductApiController::class,'getProductsByCate']);
+Route::get('/products/{name}', [ProductApiController::class,'getProductsByName']);
 
-Route::get('/categories', [CategoryController::class,'getAll'])->middleware('auth:sanctum');
 
 Route::post('/auth/register', [UserController::class, 'createUser']);
 Route::post('/auth/login', [UserController::class, 'loginUser']);

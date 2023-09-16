@@ -87,10 +87,7 @@ class ProductController extends Controller
 
     }
 
-    public function getAll()
-    {
-       return Products::with('category')->get();
-    }
+
 
     public function add()
     {
@@ -103,20 +100,22 @@ class ProductController extends Controller
 
         $request->validate([
             'itemCode' => 'required',
+            'name' => 'required',
             'description' => 'required',
             'price' => 'required|numeric',
             'category' => 'required',
             'image' => 'image|mimes:jpeg,png,jpg,webp',
         ]);
 
-        $lastProductId = Products::orderBy('id','desc')->first();
-        $nextProductId = $lastProductId ? $lastProductId->id + 1 : 1 ;
-        // dd($nextProductId);
+        $itemName = $request->input('name'); // Replace with the actual field name for item name
+        $itemCode = $request->input('itemCode');
+ 
+
 
 
         if($request->hasFile('image')){
             $image = $request->file('image');
-            $imageName = $nextProductId.'.'.$image->getClientOriginalExtension();
+            $imageName = $itemName.$itemCode.'.'.$image->getClientOriginalExtension();
             $image->move('uploads',$imageName);
         }
 
@@ -172,14 +171,15 @@ class ProductController extends Controller
             return back()->withErrors($validator);
         }
 
-        $lastProductId = Products::orderBy('id','desc')->first();
-        $nextProductId = $lastProductId ? $lastProductId->id + 1 : 1 ;
-        // dd($nextProductId);
+        $itemName = request()->input('name'); // Replace with the actual field name for item name
+        $itemCode = request()->input('itemCode');
+ 
+
 
 
         if(request()->hasFile('image')){
-            $image = request()->image;
-            $imageName = $nextProductId.'.'.$image->getClientOriginalExtension();
+            $image = request()->file('image');
+            $imageName = $itemName.'-'.$itemCode.'.'.$image->getClientOriginalExtension();
             $image->move('uploads',$imageName);
         }
 
@@ -195,24 +195,7 @@ class ProductController extends Controller
         $product->save();
 
         return redirect('/products');
-
     }
     
-    public function getProductsByName($name)
-    {
-        $product= Products::where('name' , 'like' , '%'. $name .'%')->get();
-
-        return $product;
-    }
-
-    public function getProductsByCate($category)
-    {
-        $categoryItem = Products::with('category')
-        ->whereHas('category', function ($query) use ($category) {
-            $query->where('name', 'like', '%' . $category . '%');
-        })
-        ->get();
-        
-        return $categoryItem;
-    }
+    
 }
