@@ -25,11 +25,11 @@
         <div class="mb-3 row">
             <div class="col-6">
               <label class="form-label" for="moqAmount">MOQ</label>
-              <input class="form-control" type="number" name="moqAmount" id="moqAmount" value="{{ $product['moq_amount']}}" required>
+              <input class="form-control" type="number" name="moqAmount" id="moqAmount" value="{{ $product['moq_amount']}}">
             </div>
             <div class="col-6">
               <label class="form-label" for="moqPrice">MOQ Price</label>
-              <input class="form-control" type="number" name="moqPrice" id="moqPrice" value="{{ $product['moq_price']}}" required>
+              <input class="form-control" type="number" name="moqPrice" id="moqPrice" value="{{ $product['moq_price']}}">
             </div>
           </div>
         <div class="mb-3">
