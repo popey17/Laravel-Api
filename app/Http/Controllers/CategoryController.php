@@ -20,22 +20,7 @@ class CategoryController extends Controller
         return view('components.category.categories',['categories'=>$data]);
     }
 
-    public function getAll()
-    {
-       return Categories::with('product')->get();
-    }
-
-    public function getCate($id)
-    {
-        // return Categories::with('product')->find($id);
-        $category = Categories::with('product')->find($id);
-
-    if (!$category) {
-        return response()->json(['message' => 'Category not found'], 404);
-    }
-
-    return response()->json($category);
-    }
+    
 
     public function create()
     {
