@@ -21,22 +21,12 @@ class ProductApiController extends Controller
 
     public function getAll(Request $request)
     {
-        $query = Products::with('category');
-
-        $filters = $request->except(['skip', 'limit']);
-
-        $query->where($filters);
-
-        $skip = $request->get('skip', 0);
+        
         $limit = $request->get('limit', 10);
+        
+        $query = Products::with('category')->paginate($limit);
 
-        $query->skip($skip)->take($limit);
-
-        $query->select('*');
-
-        $result = $query->get();
-
-        return $result;
+        return $query;
     }
 
     public function getProductsByName($name)
