@@ -29,20 +29,23 @@ class ProductApiController extends Controller
         return $query;
     }
 
-    public function getProductsByName($name)
+    public function getProductsByName($name, Request $request)
     {
-        $product= Products::where('name' , 'like' , '%'. $name .'%')->get();
+        $limit = $request->get('limit', 10);
+
+        $product= Products::with('category')->where('name' , 'like' , '%'. $name .'%')->paginate($limit);
 
         return $product;
     }
 
-    public function getProductsByCate($category)
+    public function getProductsByCate($category , Request $request)
     {
+        $limit = $request->get('limit', 10);
+        
         $categoryItem = Products::with('category')
         ->whereHas('category', function ($query) use ($category) {
             $query->where('name', 'like', '%' . $category . '%');
-        })
-        ->get();
+        })->paginate($limit);
         
         return $categoryItem;
     }

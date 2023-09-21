@@ -27,7 +27,7 @@ Route::get('/categories', [CategoryApiController::class,'getAll']);
 Route::get('/categories/{id}', [CategoryApiController::class,'getCate']);
 
 Route::get('/products/category/{name}', [ProductApiController::class,'getProductsByCate']);
-Route::get('/products/{name}', [ProductApiController::class,'getProductsByName']);
+Route::get('/products/name/{name}', [ProductApiController::class,'getProductsByName']);
 
 
 Route::post('/auth/register', [UserController::class, 'createUser']);
